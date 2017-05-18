@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite thread-count="3" guice-stage="DEVELOPMENT" name="Failed suite [Suite]" parallel="classes">
+  <test name="TestLogin(failed)" parallel="classes">
+    <classes>
+      <class name="bi3.tests.fnb.EndToEndFlow">
+        <methods>
+          <include name="BeforeTest"/>
+          <include name="Initialize"/>
+          <include name="AfterTest"/>
+          <include name="FullFlow"/>
+        </methods>
+      </class> <!-- bi3.tests.fnb.EndToEndFlow -->
+    </classes>
+  </test> <!-- TestLogin(failed) -->
+</suite> <!-- Failed suite [Suite] -->

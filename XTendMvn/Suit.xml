@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="suite of suites">
+    <suite-files>
+        <suite-file path="D:\Repo\InforAutomation\Test_Project\XTendMvn\testng.xml" />
+        <suite-file path="D:\Repo\InforAutomation\Test_Project\XTendMvn\testng1.xml" />
+    </suite-files>
+</suite>
