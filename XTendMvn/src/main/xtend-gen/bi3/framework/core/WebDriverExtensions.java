@@ -8,7 +8,6 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 import org.eclipse.xtext.xbase.lib.Exceptions;
-import org.eclipse.xtext.xbase.lib.InputOutput;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
@@ -303,18 +302,14 @@ public class WebDriverExtensions extends DefaultWebDriver {
       Actions action = new Actions(DefaultWebDriver.driver).contextClick(element);
       action.build().perform();
       if ((relatedStatus).booleanValue()) {
-        Thread.sleep(1000);
-        InputOutput.<String>print("related status clicked");
         String related = "//a[text()=\'Related\']";
         DefaultWebDriver.driver.findElement(By.xpath(related)).click();
-        Thread.sleep(2000);
+        Thread.sleep(1000);
         String dropDownOption = (("//a//*[contains(text(), \'" + option) + "\')]");
         System.out.println(("Element is " + dropDownOption));
         DefaultWebDriver.driver.findElement(By.xpath(dropDownOption)).click();
         System.out.println(("Element clicked " + option));
       } else {
-        InputOutput.<String>print("related status exited");
-        Thread.sleep(2000);
         String dropDownOption_1 = (("//a//*[contains(text(), \'" + option) + "\')]");
         System.out.println(("Element is " + dropDownOption_1));
         DefaultWebDriver.driver.findElement(By.xpath(dropDownOption_1)).click();

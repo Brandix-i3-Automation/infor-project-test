@@ -34,7 +34,6 @@ class MMS001ConnectWarehouse extends BasePage {
 	def void changeWarehouse(){
 		
 		waitForLoadingComplete();
-		Thread.sleep(500);
 		rightClick(gridFirstLine);
 
 		// Copy Item

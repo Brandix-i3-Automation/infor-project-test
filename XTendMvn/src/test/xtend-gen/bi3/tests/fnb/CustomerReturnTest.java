@@ -1,5 +1,6 @@
 package bi3.tests.fnb;
 
+import bi3.configuration.settings.OIS390SettingTest;
 import bi3.framework.config.ConfigKeys;
 import bi3.framework.util.ExcelUtil;
 import bi3.pages.HomePage;
@@ -18,7 +19,6 @@ import bi3.pages.ois390.OIS391E;
 import bi3.pages.ois390.OIS392E;
 import bi3.pages.ois390.OIS393B;
 import bi3.tests.BaseTest;
-import bi3.tests.fnb.OIS390SettingTest;
 import java.util.HashMap;
 import org.eclipse.xtext.xbase.lib.Exceptions;
 import org.testng.Assert;

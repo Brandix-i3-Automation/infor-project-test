@@ -1,6 +1,6 @@
 package bi3.infor.templates
 
-import bi3.infor.templates.*;
+import bi3.infor.templates.dto.ItemTemplate
 import bi3.pages.mms001.MMS001
 import bi3.pages.mms001.MMS001C
 import bi3.pages.mms001.MMS001E
@@ -14,7 +14,6 @@ import bi3.pages.mms001.MMS001L
 import bi3.pages.mms001.MMS001M
 import org.openqa.selenium.WebDriver
 import org.testng.Assert
-import bi3.infor.templates.dto.ItemTemplate
 
 /**
  * Infor business process template class for item creation.

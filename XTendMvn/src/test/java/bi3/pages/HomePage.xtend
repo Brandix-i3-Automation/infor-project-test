@@ -95,6 +95,13 @@ class HomePage extends BasePage {
     
     @FindBy(css="li[data-gv-link='MWS060']")
     WebElement linkOpenToolBox
+    
+     @FindBy(css="li[data-gv-link='CAS310']")
+    WebElement linkOrderCostingDisplay
+    
+    @FindBy(css="li[data-gv-link='OIS150']")
+    WebElement linkCoOpen;
+    
 	def void GoToMMS001() {
 		waitForLoadingComplete();
 		// Wait for Home page loaded
@@ -704,6 +711,40 @@ def void GoToOIS275(){
 		waitToBeDisplayed(linkNotifyTranspotation);
 		linkNotifyTranspotation.click();
 	}
+	
+	def void GoToCAS310() {
+		waitForLoadingComplete();
+		// Wait for Home page loaded
+		waitToBeDisplayed(MenuWidgetOptions, 60);
+		// Search for MMS0012
+		headerMenu.click();
+		waitToBeDisplayed(txtSearch);
+		txtSearch.click();
+		txtSearch.clearRobustly()
+		txtSearch.sendKeys("CAS310");
+		waitToBeDisplayed(linkOrderCostingDisplay);
+		linkOrderCostingDisplay.click();
+		//txtSearch.sendKeys(Keys.ENTER);
+		waitForLoadingComplete();
+	}
+	
+	def void GoToOIS150() {
+		// Wait for Home page loaded
+		waitToBeDisplayed(MenuWidgetOptions, 120);
+
+		// Search for MMS001
+		headerMenu.click();
+		waitToBeDisplayed(txtSearch);
+		txtSearch.click();
+		clearRobustly(txtSearch);
+		txtSearch.click();
+		txtSearch.sendKeys("OIS150");
+		waitToBeDisplayed(linkCoOpen);
+		linkCoOpen.click()
+		waitForLoadingComplete()
+
+	}
+	
 }
 
 

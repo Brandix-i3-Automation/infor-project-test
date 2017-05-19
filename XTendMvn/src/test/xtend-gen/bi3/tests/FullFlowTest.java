@@ -370,10 +370,12 @@ public class FullFlowTest extends BaseTest {
   
   @Test
   public void FullFlow() {
+    this.mms001SettingsTest.updateItemsSetting("2-Always update");
     String finishedGoodTemplateItemNo = "Y3001";
     String rawMaterialTemplateItemNo = "Y7005";
     String newItemNumber = this.copyFinishedGoodItem(finishedGoodTemplateItemNo);
     String newRawMatNumber = this.copyRawMaterialItem(rawMaterialTemplateItemNo);
+    this.createSku(newItemNumber, newRawMatNumber);
     this.pds001SettingsTest.updateProductVariantSetting("2-Always update");
     this.createProductStructure(newItemNumber, newRawMatNumber);
     String CONumber = this.createCustomerOrder(newItemNumber);

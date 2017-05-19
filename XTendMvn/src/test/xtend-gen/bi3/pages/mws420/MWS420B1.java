@@ -1,5 +1,6 @@
 package bi3.pages.mws420;
 
+import bi3.framework.core.WebDriverExtensions;
 import bi3.framework.elements.inforelements.InforGrid;
 import bi3.pages.BasePage;
 import java.util.List;
@@ -12,6 +13,15 @@ import org.openqa.selenium.support.FindBy;
 public class MWS420B1 extends BasePage {
   @FindBy(css = "div[id*=\'MWA420BS\'][class*=\'inforDataGrid\']")
   private WebElement gridElementPickingList;
+  
+  @FindBy(css = "div[class=\'grid-canvas grid-canvas-top grid-canvas-left\']>div")
+  private WebElement gridFirstConsignee;
+  
+  @FindBy(xpath = "//a[text()=\'Related\']")
+  private WebElement linkRelated;
+  
+  @FindBy(xpath = "//a//*[contains(text(), \'Confirm Issues\')]")
+  private WebElement linkConfirmIssues;
   
   public MWS420B1(final WebDriver driver) {
     super(driver);
@@ -42,5 +52,15 @@ public class MWS420B1 extends BasePage {
     String PiS = cellPiS.getText();
     InputOutput.<String>println("PiS value Returned");
     return PiS;
+  }
+  
+  public void ConfirmIssues() {
+    WebDriverExtensions.waitToBeClickable(this.gridFirstConsignee);
+    this.rightClick(this.gridFirstConsignee);
+    WebDriverExtensions.waitToBeClickable(this.linkRelated);
+    this.linkRelated.click();
+    WebDriverExtensions.waitToBeClickable(this.linkConfirmIssues);
+    this.linkConfirmIssues.click();
+    BasePage.waitForLoadingComplete();
   }
 }

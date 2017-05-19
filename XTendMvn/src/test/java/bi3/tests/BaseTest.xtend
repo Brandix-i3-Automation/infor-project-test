@@ -3,58 +3,56 @@ package bi3.tests
 import org.openqa.selenium.WebDriver
 import org.openqa.selenium.chrome.ChromeDriver
 import java.util.concurrent.TimeUnit
-import org.testng.annotations.BeforeTest
-import org.testng.annotations.AfterTest
-import org.openqa.selenium.chrome.ChromeOptions import org.testng.annotations.BeforeMethod
-import org.testng.annotations.AfterMethod
+import org.openqa.selenium.chrome.ChromeOptions  
 import org.openqa.selenium.ie.InternetExplorerDriver
-import org.openqa.selenium.Capabilities
-import com.relevantcodes.extentreports.ExtentReports
-import com.relevantcodes.extentreports.ExtentTest
-import java.io.IOException
-import bi3.framework.extentReport.ExtentManagerChrome
-import org.apache.logging.log4j.LogManager
-import org.apache.logging.log4j.Logger
-import org.testng.ITestResult
-import java.lang.reflect.Method
-import java.net.MalformedURLException
+import org.openqa.selenium.remote.DesiredCapabilities
+import org.openqa.selenium.ie.InternetExplorerDriverService
+import org.testng.annotations.BeforeMethod
+import org.testng.annotations.BeforeSuite
+import bi3.framework.config.ConfigKeys
+import org.testng.annotations.AfterMethod
 
 class BaseTest {
-	
+
 	public static WebDriver driver;
-	
-	   
+
+	@BeforeSuite (alwaysRun= true)
+    def void beforeSuite() {
+        ConfigKeys.setProperties();
+    }
+
+
 	@BeforeMethod
-	def void BeforeTest(){
-		System.setProperty("webdriver.chrome.driver",".\\src\\main\\resources\\driver\\chromedriver.exe");
-		var ChromeOptions options = new ChromeOptions();
-		options.addArguments("start-maximized");
-		
-		driver = new ChromeDriver(options);
-//        driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
-//        
-        
-        
-        
-        
-//       System.setProperty("webdriver.ie.driver",".\\src\\main\\resources\\driver\\IEDriverServer.exe");
-//       driver = new InternetExplorerDriver();
-		//driver.get("http://google.lk"); 
-//		var InternetExplorerDriver options1 = new InternetExplorerDriver();
-//		options1.addArguments("test1");
-//		
-//		
-//		driver = new InternetExplorerDriver();
-//        driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
-//        return 
-//	}
-//	
-//	def setDriver(InternetExplorerDriver driver, InternetExplorerDriver driver2) {
-//		throw new UnsupportedOperationException("TODO: auto-generated method stub")
-//	}
-	
-	
-	}		
+	def void BeforeTest() {
+		var _BROWSER = ConfigKeys.BROWSER_TYPE.toUpperCase();
+
+		if (_BROWSER == "CHROME") {
+			System.setProperty("webdriver.chrome.driver", ConfigKeys.CHROME_DRIVER_PATH);
+			var ChromeOptions options = new ChromeOptions();
+			options.addArguments("start-maximized");
+			driver = new ChromeDriver(options);
+		}
+		if (_BROWSER == "IE") {
+			System.setProperty("webdriver.ie.driver", ConfigKeys.IE_32_DRIVER_PATH);
+			
+			var driverService = InternetExplorerDriverService.createDefaultService();
+						
+			var DesiredCapabilities capabilities = DesiredCapabilities.internetExplorer();
+			capabilities.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS, false);
+			capabilities.setCapability(InternetExplorerDriver.NATIVE_EVENTS, false);
+			capabilities.setCapability(InternetExplorerDriver.IGNORE_ZOOM_SETTING, true);
+			capabilities.setCapability(InternetExplorerDriver.BROWSER_ATTACH_TIMEOUT, "60000");
+			capabilities.setCapability(InternetExplorerDriver.IE_ENSURE_CLEAN_SESSION, true);
+			capabilities.setCapability(InternetExplorerDriver.INITIAL_BROWSER_URL, "");
+			
+			driver = new InternetExplorerDriver(capabilities);			
+		}
+		if (_BROWSER == "FF") {
+		}
+		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+
+	}
+			
 	@AfterMethod
 	def void AfterTest(){
 		//driver.quit();

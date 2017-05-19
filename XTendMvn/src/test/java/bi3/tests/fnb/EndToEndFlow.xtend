@@ -349,7 +349,7 @@ class EndToEndFlow extends BaseTest {
 		var PoNumber = this.poCreation(createCustomerOrder, newRawMatNumber);
 
 		var moDto1 = EndToEndMadeToOrderTest.MOPVerification("001", newItemNumber);
-		meterialIssue(moDto1.lastJointSchNo); // schedule number 11 added for testing
+		
 
 	}
 
@@ -782,7 +782,7 @@ class EndToEndFlow extends BaseTest {
 
 		// Verify The status
 		Assert.assertEquals(mws060b.checkStatus(newRawMaterialNumber), "2");
-
+		mws060b.closeAllTabs();
 		return PoNumber;
 	}
 
@@ -790,7 +790,7 @@ class EndToEndFlow extends BaseTest {
 	 * Material Issuing PMS070
 	 */
 	def meterialIssue(String lastJointSchNo) {
-		homePage.closeAllTabs();
+        homePage.closeAllTabs();
 		homePage.GoToPMS070
 		pms070a.setSchedNumberFromLookUp(lastJointSchNo)
 		pms070a.clearMONumber()

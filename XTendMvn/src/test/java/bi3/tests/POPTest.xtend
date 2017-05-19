@@ -178,7 +178,8 @@ class POPTest extends BaseTest{
  	@Test
  	def void ProductOrderProposal()
  	{
- 		loginPage.GoTo()
+ 			loginPage.GoTo()
+		
 		homePage.GoToMMS001()
 		mms001.SearchByItemNumber("Y3001")
 		mms001.CopyItem("Y3001")

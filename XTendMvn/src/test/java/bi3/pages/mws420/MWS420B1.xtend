@@ -12,6 +12,15 @@ class MWS420B1 extends BasePage {
 	@FindBy(css="div[id*='MWA420BS'][class*='inforDataGrid']")
 	WebElement gridElementPickingList;
 	
+	@FindBy(css="div[class='grid-canvas grid-canvas-top grid-canvas-left']>div")
+	WebElement gridFirstConsignee;
+	
+	@FindBy(xpath="//a[text()='Related']")
+	WebElement linkRelated;
+	
+	@FindBy(xpath="//a//*[contains(text(), 'Confirm Issues')]")
+	WebElement linkConfirmIssues;
+	
 	new(WebDriver driver) {
 		super(driver)
 	}
@@ -43,6 +52,16 @@ class MWS420B1 extends BasePage {
 	
 		println("PiS value Returned");
 		return PiS;
+	}
+	
+	def void ConfirmIssues() {
+		waitToBeClickable(gridFirstConsignee)
+		rightClick(gridFirstConsignee);
+		linkRelated.waitToBeClickable()
+		linkRelated.click();
+		linkConfirmIssues.waitToBeClickable()
+		linkConfirmIssues.click();
+		waitForLoadingComplete();
 	}
 	
 }
