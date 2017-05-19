@@ -3,46 +3,38 @@ package bi3.pages
 import org.openqa.selenium.WebDriver
 import org.openqa.selenium.WebElement
 import org.openqa.selenium.support.FindBy
-import java.awt.Robot
-import java.awt.event.KeyEvent
+import java.util.concurrent.TimeUnit
 
 class LoginPage extends BasePage {
 
 	new(WebDriver driver) { // Constructor
 		super(driver)
+		
 	}
-
+	
 	@FindBy(css = ".table.table-striped.table-bordered")
     WebElement txtUserName;
     
     @FindBy(css = ".table.table-striped.table-bordered")
-    WebElement txtPassword; 
+    WebElement txtPassword;
     
-	def void GoTo() {
-		driver.get("http://Priyankara:bi3passwordQ8892@bi3-m313-01.brandixlk.org:44056/mne/");
-//	driver.get("http://bi3-m313-01.brandixlk.org:44056/mne/");
-//	Thread.sleep(5000);
-//		 var Robot rb = new Robot();
-//		 
-//		 
-//	    	rb.keyPress(KeyEvent.VK_TAB);
-//	    	rb.keyRelease(KeyEvent.VK_TAB);
-//	    	rb.keyPress(KeyEvent.VK_TAB);
-//	    	rb.keyRelease(KeyEvent.VK_TAB);
-////	    	rb.keyPress(KeyEvent.VK_TAB);
-////	    	rb.keyRelease(KeyEvent.VK_TAB);
-////	    	rb.keyPress(KeyEvent.VK_TAB);
-////	    	rb.keyRelease(KeyEvent.VK_TAB);
-////	    	
-////	    	rb.keyPress(KeyEvent.VK_CLEAR);
-////	    	rb.keyRelease(KeyEvent.VK_INSERT);
-////	    	rb.keyRelease(KeyEvent.VK_CONTROL);
-//	    	Thread.sleep(2000);
-//	    	rb.keyPress(KeyEvent.VK_ENTER);
-//	    	rb.keyRelease(KeyEvent.VK_ENTER);
-//	    	Thread.sleep(2000);
+    @FindBy(id="MenuTabLabel")
+    WebElement lblMenu;
 	
-		//driver.get("http://google.lk"); 
+
+    
+	def void GoTo() {	
+		try {
+			driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+			var labelName = lblMenu.getText();
+			println(labelName);
+
+		} catch (Exception e) {
+			driver.get("http://rasithae:ras8@brandixi3@bi3-m313-01.brandixlk.org:44056/mne/");
+		} finally {
+			driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		}
+		
 	}
 
 }

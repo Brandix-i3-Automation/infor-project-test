@@ -40,6 +40,7 @@ import bi3.pages.mws410.MWS410B;
 import bi3.pages.mws410.MWS410E;
 import bi3.pages.mws410.MWS410I;
 import bi3.pages.mws420.MWS420B;
+import bi3.pages.mws420.MWS420B1;
 import bi3.pages.mws460.MWS460B;
 import bi3.pages.ois100.OIS100A;
 import bi3.pages.ois100.OIS100G;
@@ -287,6 +288,8 @@ public class EndToEndMadeToOrderTest extends BaseTest {
   
   private PMS050E pms050e;
   
+  private MWS420B1 mws420b1;
+  
   public EndToEndMadeToOrderTest(final WebDriver driver) {
     BaseTest.driver = driver;
     this.Initialize();
@@ -481,6 +484,8 @@ public class EndToEndMadeToOrderTest extends BaseTest {
     this.mms121b1 = _mMS121B1;
     PMS050E _pMS050E = new PMS050E(BaseTest.driver);
     this.pms050e = _pMS050E;
+    MWS420B1 _mWS420B1 = new MWS420B1(BaseTest.driver);
+    this.mws420b1 = _mWS420B1;
   }
   
   /**
@@ -649,7 +654,6 @@ public class EndToEndMadeToOrderTest extends BaseTest {
   }
   
   public moDto MOPVerification(final String warehouse, final String newItemNumber) {
-    this.mws060b.closeAllTabs();
     this.homePage.GoToMMS080();
     this.mms080b1.setHeaderDetails(newItemNumber, warehouse);
     this.mms080b1.calculateMRPAndRefreshPage();
@@ -702,7 +706,10 @@ public class EndToEndMadeToOrderTest extends BaseTest {
     this.pms100_b.goToDeliveryToolbox();
     this.mws410b.relaseForPicking();
     Assert.assertEquals(this.mws410b.getRIPOFRow1(), "1");
-    this.mws410b.closeAllTabs();
+    this.mws410b.MoveToPickingList();
+    this.mws420b1.ConfirmIssues();
+    Assert.assertEquals(this.mws420b1.getPiSOfFirstRow(), "90");
+    this.mws420b1.closeAllTabs();
     this.homePage.GoToPMS070();
     this.pms070a.setSchedNumberFromLookUp(shortSched);
     this.pms070a.clearMONumber();
@@ -725,10 +732,12 @@ public class EndToEndMadeToOrderTest extends BaseTest {
     this.pms050e.enterManufQtyAsOrderQty();
     this.pms050e.ClickNext();
     this.pms050e.ClickNext();
-    stat = this.pms070b1.getStatusOfGridRow(0);
+    this.pms050e.ClickNext();
+    this.pms050b1.refreshPage();
+    stat = this.pms050b1.getStatusOfGridRow(0);
     Assert.assertEquals(stat, "90");
     System.out.println("FG Reporting Executed ");
-    this.pms070a.closeAllTabs();
+    this.pms050a.closeAllTabs();
     moDto data = new moDto();
     data.setLastJointSchNo(shortSched);
     data.setFullScheduleNo(scheduleNo);

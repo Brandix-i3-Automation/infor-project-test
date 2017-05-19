@@ -97,6 +97,7 @@ import bi3.pages.mms121.MMS121B1
 import org.openqa.selenium.WebDriver
 import java.util.Base64
 import bi3.pages.pms050.PMS050E
+import bi3.pages.mws420.MWS420B1
 
 public class EndToEndMadeToOrderTest extends BaseTest {
 	
@@ -221,6 +222,8 @@ public class EndToEndMadeToOrderTest extends BaseTest {
 	
 	MMS121B1 mms121b1
 	PMS050E pms050e
+	
+	MWS420B1 mws420b1
 	
 	new(WebDriver driver) {
 		this.driver = driver;
@@ -351,6 +354,7 @@ public class EndToEndMadeToOrderTest extends BaseTest {
 		
 		mms121b1 = new MMS121B1(driver)
 		pms050e = new PMS050E(driver)
+		mws420b1 = new MWS420B1(driver)
 	}
 
 	/**
@@ -590,7 +594,7 @@ public class EndToEndMadeToOrderTest extends BaseTest {
 	}
 	
 	def moDto MOPVerification(String warehouse,String newItemNumber){
-		mws060b.closeAllTabs();
+		
 		homePage.GoToMMS080()
 		mms080b1.setHeaderDetails(newItemNumber,warehouse);
 		mms080b1.calculateMRPAndRefreshPage();
@@ -664,7 +668,10 @@ public class EndToEndMadeToOrderTest extends BaseTest {
 		pms100_b.goToDeliveryToolbox()
 		mws410b.relaseForPicking()
 		Assert.assertEquals(mws410b.getRIPOFRow1(),"1")
-		mws410b.closeAllTabs()
+		mws410b.MoveToPickingList()
+		mws420b1.ConfirmIssues()
+		Assert.assertEquals(mws420b1.getPiSOfFirstRow(),"90")
+		mws420b1.closeAllTabs()
 		
 		//Operation reporting
 		homePage.GoToPMS070()
@@ -695,11 +702,13 @@ public class EndToEndMadeToOrderTest extends BaseTest {
 		pms050e.enterManufQtyAsOrderQty()
 		pms050e.ClickNext()
 		pms050e.ClickNext()
-		stat = pms070b1.getStatusOfGridRow(0)
+		pms050e.ClickNext()
+		pms050b1.refreshPage()
+		stat = pms050b1.getStatusOfGridRow(0)
 		Assert.assertEquals(stat, "90")
 		System.out.println("FG Reporting Executed ");
 
-		pms070a.closeAllTabs()
+		pms050a.closeAllTabs()
 		
 		var moDto data = new moDto();
 		data.lastJointSchNo = shortSched;

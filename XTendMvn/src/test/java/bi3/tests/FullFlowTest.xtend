@@ -248,7 +248,7 @@ class FullFlowTest extends BaseTest{
 	@Test
 	def void FullFlow(){
 		//mms001 user settings
-	//	mms001SettingsTest.updateItemsSetting("2-Always update");
+		mms001SettingsTest.updateItemsSetting("2-Always update");
 		
 		var String finishedGoodTemplateItemNo = "Y3001";
 		var String rawMaterialTemplateItemNo = "Y7005";
@@ -260,7 +260,7 @@ class FullFlowTest extends BaseTest{
 		var newRawMatNumber = this.copyRawMaterialItem(rawMaterialTemplateItemNo);
 				
 		// Create SKUs using MMS077
-	//	this.createSku(newItemNumber,newRawMatNumber);
+		this.createSku(newItemNumber,newRawMatNumber);
 		
 		//pds001 settings page
 		pds001SettingsTest.updateProductVariantSetting("2-Always update")		

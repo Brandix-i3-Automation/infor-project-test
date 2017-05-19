@@ -35,6 +35,9 @@ class CAS950E extends BasePage {
 	@FindBy(id="Next")
 	WebElement btnNext
 
+	@FindBy(id="WWDIVI")
+	WebElement txtDivision
+
 	def void selectFromDate(String fromDate) {
 		waitForLoadingComplete();
 		txtFromDate.click();
@@ -83,6 +86,11 @@ class CAS950E extends BasePage {
 		waitToBeClickable(btnNext)
 		btnNext.click()
 		waitForLoadingComplete()
+	}
+	
+	def void FillDivision(String Division){
+		waitForLoadingComplete();
+		txtDivision.sendKeys(Division);
 	}
 }
 

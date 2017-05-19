@@ -36,6 +36,9 @@ public class CAS950E extends BasePage {
   @FindBy(id = "Next")
   private WebElement btnNext;
   
+  @FindBy(id = "WWDIVI")
+  private WebElement txtDivision;
+  
   public void selectFromDate(final String fromDate) {
     BasePage.waitForLoadingComplete();
     this.txtFromDate.click();
@@ -79,5 +82,10 @@ public class CAS950E extends BasePage {
     WebDriverExtensions.waitToBeClickable(this.btnNext);
     this.btnNext.click();
     BasePage.waitForLoadingComplete();
+  }
+  
+  public void FillDivision(final String Division) {
+    BasePage.waitForLoadingComplete();
+    this.txtDivision.sendKeys(Division);
   }
 }

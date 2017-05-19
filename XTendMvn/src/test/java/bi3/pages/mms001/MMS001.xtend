@@ -91,8 +91,6 @@ class MMS001 extends BasePage {
 				rightClick(gridFirstLine,true,"Item/Warehouse");
 			}
 		
-		print("clicked element");
-		
 //		waitToBeClickable(linkRelated);
 //		linkRelated.click();
 //		

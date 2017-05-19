@@ -96,6 +96,12 @@ public class HomePage extends BasePage {
   @FindBy(css = "li[data-gv-link=\'MWS060\']")
   private WebElement linkOpenToolBox;
   
+  @FindBy(css = "li[data-gv-link=\'CAS310\']")
+  private WebElement linkOrderCostingDisplay;
+  
+  @FindBy(css = "li[data-gv-link=\'OIS150\']")
+  private WebElement linkCoOpen;
+  
   public void GoToMMS001() {
     BasePage.waitForLoadingComplete();
     WebDriverExtensions.waitToBeDisplayed(this.MenuWidgetOptions, 120);
@@ -635,5 +641,31 @@ public class HomePage extends BasePage {
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
+  }
+  
+  public void GoToCAS310() {
+    BasePage.waitForLoadingComplete();
+    WebDriverExtensions.waitToBeDisplayed(this.MenuWidgetOptions, 60);
+    this.headerMenu.click();
+    WebDriverExtensions.waitToBeDisplayed(this.txtSearch);
+    this.txtSearch.click();
+    BasePage.clearRobustly(this.txtSearch);
+    this.txtSearch.sendKeys("CAS310");
+    WebDriverExtensions.waitToBeDisplayed(this.linkOrderCostingDisplay);
+    this.linkOrderCostingDisplay.click();
+    BasePage.waitForLoadingComplete();
+  }
+  
+  public void GoToOIS150() {
+    WebDriverExtensions.waitToBeDisplayed(this.MenuWidgetOptions, 120);
+    this.headerMenu.click();
+    WebDriverExtensions.waitToBeDisplayed(this.txtSearch);
+    this.txtSearch.click();
+    BasePage.clearRobustly(this.txtSearch);
+    this.txtSearch.click();
+    this.txtSearch.sendKeys("OIS150");
+    WebDriverExtensions.waitToBeDisplayed(this.linkCoOpen);
+    this.linkCoOpen.click();
+    BasePage.waitForLoadingComplete();
   }
 }

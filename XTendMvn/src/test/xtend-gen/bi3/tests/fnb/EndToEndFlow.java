@@ -487,7 +487,6 @@ public class EndToEndFlow extends BaseTest {
     this.checkPopExist(newRawMatNumber, warehouse2Id);
     String PoNumber = this.poCreation(createCustomerOrder, newRawMatNumber);
     moDto moDto1 = this.EndToEndMadeToOrderTest.MOPVerification("001", newItemNumber);
-    this.meterialIssue(moDto1.getLastJointSchNo());
   }
   
   public void checkPopExist(final String newRawMatNumber, final String warehouse2Id) {
@@ -768,6 +767,7 @@ public class EndToEndFlow extends BaseTest {
     this.homePage.GoToMWS060();
     this.mws060b.enterItemNumber(newRawMaterialNumber);
     Assert.assertEquals(this.mws060b.checkStatus(newRawMaterialNumber), "2");
+    this.mws060b.closeAllTabs();
     return PoNumber;
   }
   

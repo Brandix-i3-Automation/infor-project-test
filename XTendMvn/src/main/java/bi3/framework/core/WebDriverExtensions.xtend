@@ -289,17 +289,12 @@ class WebDriverExtensions extends DefaultWebDriver {
 			//var String dropDownOption = "//div[contains(text(),'"+option+"')]";
 			
 			if(relatedStatus){	
-				Thread.sleep(1000);
-				print("related status clicked");
-				
-				//var String related = "//a[text()='Related']/ancestor::div[@class='inforMenu']";
-				var String related = "//a[text()='Related']"; 
+				var String related = "//a[text()='Related']";
 				driver.findElement(By.xpath(related)).click
-				Thread.sleep(2000);
+				Thread.sleep(1000);
 				
 				//clicks the parameter ralate value
 				var String dropDownOption = "//a//*[contains(text(), '"+option+"')]";
-				//var String dropDownOption = "//span[text()='"+option+"']/ancestor::li[@sgroup='Option']";
 				System.out.println("Element is "+dropDownOption)
 				driver.findElement(By.xpath(dropDownOption)).click
 										
@@ -307,8 +302,7 @@ class WebDriverExtensions extends DefaultWebDriver {
 				
 				}
 				else{
-				print("related status exited");	
-				Thread.sleep(2000);
+//					
 				var String dropDownOption = "//a//*[contains(text(), '"+option+"')]";
 				System.out.println("Element is "+dropDownOption)
 				driver.findElement(By.xpath(dropDownOption)).click										

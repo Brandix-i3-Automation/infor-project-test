@@ -9,7 +9,6 @@ import bi3.framework.util.ExcelUtil
 import java.util.HashMap
 import org.testng.Assert
 import bi3.pages.ToolbarPage
-import bi3.tests.fnb.OIS390SettingTest
 import bi3.tests.BaseTest
 import bi3.pages.ois390.OIS390A
 import bi3.pages.ois390.OIS390E
@@ -23,6 +22,7 @@ import bi3.pages.ois100.OIS100H
 import bi3.pages.ois276.OIS276B
 import bi3.pages.ois101.OIS101E
 import bi3.pages.ois300.OIS300B
+import bi3.configuration.settings.OIS390SettingTest
 
 class CustomerReturnTest extends BaseTest {
 
